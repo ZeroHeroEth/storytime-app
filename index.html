@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Story Time! ✨</title>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sky: #0f0c29;
+    --card-bg: rgba(255,255,255,0.07);
+    --accent: #f9c74f;
+    --accent2: #f8961e;
+    --pink: #ff70a6;
+    --green: #48c78e;
+    --radius: 26px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: linear-gradient(160deg, #0f0c29 0%, #1a1242 50%, #1e1a3a 100%);
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center;
+    color: #fff; overflow-x: hidden;
+  }
+  .stars {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(1px 1px at 8% 12%, rgba(255,255,255,0.95) 0%, transparent 100%),
+      radial-gradient(1px 1px at 22% 38%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 48% 8%, rgba(255,255,255,0.85) 0%, transparent 100%),
+      radial-gradient(1px 1px at 67% 22%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(2px 2px at 83% 48%, rgba(255,255,255,0.9) 0%, transparent 100%),
+      radial-gradient(1px 1px at 92% 15%, rgba(255,255,255,0.75) 0%, transparent 100%),
+      radial-gradient(1px 1px at 35% 72%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 58% 85%, rgba(255,255,255,0.8) 0%, transparent 100%),
+      radial-gradient(1px 1px at 13% 88%, rgba(255,255,255,0.55) 0%, transparent 100%),
+      radial-gradient(1px 1px at 74% 65%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 4% 55%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 96% 78%, rgba(255,255,255,0.65) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 43% 44%, rgba(255,255,255,0.4) 0%, transparent 100%);
+    animation: twinkle 4s ease-in-out infinite alternate;
+  }
+  @keyframes twinkle { 0%{opacity:0.55} 100%{opacity:1} }
+  .orb { position:fixed; border-radius:50%; filter:blur(70px); pointer-events:none; z-index:0; }
+  .orb1 { width:320px;height:320px;background:rgba(90,50,180,0.28);top:-60px;left:-90px;animation:f1 9s ease-in-out infinite; }
+  .orb2 { width:260px;height:260px;background:rgba(249,199,79,0.12);bottom:80px;right:-70px;animation:f2 11s ease-in-out infinite; }
+  .orb3 { width:220px;height:220px;background:rgba(72,199,142,0.16);bottom:-60px;left:28%;animation:f3 10s ease-in-out infinite; }
+  @keyframes f1{0%,100%{transform:translate(0,0)}50%{transform:translate(22px,32px)}}
+  @keyframes f2{0%,100%{transform:translate(0,0)}50%{transform:translate(-28px,-22px)}}
+  @keyframes f3{0%,100%{transform:translate(0,0)}50%{transform:translate(18px,-28px)}}
+  .app { position:relative;z-index:1;width:100%;max-width:480px;padding:22px 18px 44px;display:flex;flex-direction:column;align-items:center; }
+  .header { text-align:center;margin-bottom:18px;animation:fadeDown 0.55s ease both; }
+  .moon { font-size:50px;display:block;animation:moonBob 3s ease-in-out infinite;margin-bottom:2px; }
+  @keyframes moonBob{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-8px) rotate(5deg)}}
+  h1 { font-family:'Fredoka One',cursive;font-size:clamp(2rem,8vw,2.8rem);background:linear-gradient(135deg,#f9c74f,#f8961e,#ff70a6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.1; }
+  .subtitle { font-size:0.88rem;color:rgba(255,255,255,0.5);margin-top:4px;font-weight:700; }
+  @keyframes fadeDown{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:translateY(0)}}
+  .steps { display:flex;align-items:center;gap:8px;margin-bottom:16px;animation:fadeDown 0.55s 0.1s ease both;opacity:0; }
+  .step-pill { display:flex;align-items:center;gap:5px;background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.1);border-radius:999px;padding:5px 14px;font-family:'Fredoka One',cursive;font-size:0.82rem;color:rgba(255,255,255,0.35);transition:all 0.3s;white-space:nowrap; }
+  .step-pill.active { background:rgba(249,199,79,0.14);border-color:rgba(249,199,79,0.5);color:var(--accent); }
+  .step-pill.done   { background:rgba(72,199,142,0.12);border-color:rgba(72,199,142,0.4);color:#48c78e; }
+  .step-arrow { color:rgba(255,255,255,0.2);font-size:1rem; }
+  .section-label { font-family:'Fredoka One',cursive;font-size:1.1rem;color:rgba(255,255,255,0.75);margin-bottom:11px;width:100%;text-align:center; }
+  .section-label span { color:var(--accent); }
+  .grid { display:grid;grid-template-columns:1fr 1fr;gap:11px;width:100%;margin-bottom:16px; }
+  .card { background:var(--card-bg);border:2px solid rgba(255,255,255,0.1);border-radius:var(--radius);padding:15px 10px 13px;display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;transition:transform 0.14s,border-color 0.2s,background 0.2s,box-shadow 0.2s;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);user-select:none;position:relative;overflow:hidden; }
+  .card::before { content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.04),transparent);pointer-events:none; }
+  .card:active { transform:scale(0.93); }
+  .card.selected { border-color:var(--accent);background:rgba(249,199,79,0.13);transform:scale(1.04);box-shadow:0 0 26px rgba(249,199,79,0.32),0 4px 18px rgba(0,0,0,0.3); }
+  .card .emoji { font-size:44px;line-height:1; }
+  .card .name  { font-family:'Fredoka One',cursive;font-size:0.95rem;color:#fff;text-align:center;line-height:1.2; }
+  .card .tag   { font-size:0.67rem;color:rgba(255,255,255,0.42);font-weight:800;letter-spacing:0.5px;text-transform:uppercase;text-align:center; }
+  .go-btn { width:100%;background:linear-gradient(135deg,#f9c74f,#f8961e);border:none;border-radius:999px;padding:18px;font-family:'Fredoka One',cursive;font-size:1.35rem;color:#1a1a2e;cursor:pointer;transition:transform 0.14s,box-shadow 0.2s,opacity 0.2s;box-shadow:0 6px 28px rgba(249,199,79,0.38);display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:8px; }
+  .go-btn:disabled { opacity:0.28;cursor:not-allowed;box-shadow:none; }
+  .go-btn:not(:disabled):active { transform:scale(0.96); }
+  .story-panel { width:100%;background:rgba(255,255,255,0.07);border:2px solid rgba(255,255,255,0.1);border-radius:var(--radius);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);overflow:hidden;animation:panelIn 0.45s ease both; }
+  @keyframes panelIn{from{opacity:0;transform:scale(0.94)}to{opacity:1;transform:scale(1)}}
+  .story-header { background:linear-gradient(135deg,rgba(249,199,79,0.17),rgba(248,150,30,0.11));padding:15px 18px 12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid rgba(255,255,255,0.08); }
+  .story-emojis { font-size:30px;display:flex;gap:4px; }
+  .story-title  { font-family:'Fredoka One',cursive;font-size:0.98rem;color:var(--accent);line-height:1.3; }
+  .story-sub    { font-size:0.68rem;color:rgba(255,255,255,0.4);font-weight:700;margin-top:2px; }
+  .story-body { padding:18px; }
+  .story-text { font-size:1rem;line-height:1.8;color:rgba(255,255,255,0.9);font-weight:700;min-height:80px; }
+  .sentence { transition:color 0.25s; }
+  .sentence.active { color:var(--accent); }
+  .story-controls { display:flex;gap:10px;margin-top:16px;flex-wrap:wrap; }
+  .ctrl-btn { flex:1;min-width:90px;background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.14);border-radius:999px;padding:11px 10px;font-family:'Fredoka One',cursive;font-size:0.88rem;color:#fff;cursor:pointer;transition:background 0.14s,transform 0.1s;display:flex;align-items:center;justify-content:center;gap:5px; }
+  .ctrl-btn:active{transform:scale(0.95);background:rgba(255,255,255,0.13)}
+  .ctrl-btn.primary{background:linear-gradient(135deg,rgba(249,199,79,0.22),rgba(248,150,30,0.16));border-color:rgba(249,199,79,0.38)}
+  .ctrl-btn.speaking{background:linear-gradient(135deg,rgba(72,199,142,0.22),rgba(72,199,142,0.12));border-color:rgba(72,199,142,0.45);animation:pulse 1.5s ease infinite}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(72,199,142,0.4)}50%{box-shadow:0 0 0 8px rgba(72,199,142,0)}}
+  .error-msg { color:#ff7875;font-size:0.88rem;text-align:center;padding:10px;font-weight:700; }
+  .back-btn { background:none;border:none;font-family:'Fredoka One',cursive;font-size:0.93rem;color:rgba(255,255,255,0.32);cursor:pointer;padding:10px 0;display:flex;align-items:center;justify-content:center;gap:5px;transition:color 0.15s;width:100%;margin-top:4px; }
+  .back-btn:hover{color:rgba(255,255,255,0.6)}
+  .confetti-wrap{position:fixed;inset:0;pointer-events:none;z-index:100}
+  .confetti-piece{position:absolute;width:10px;height:10px;border-radius:2px;animation:cfFall 1.6s ease-out forwards}
+  @keyframes cfFall{0%{transform:translateY(-20px) rotate(0deg);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+  .hidden { display:none !important; }
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div>
+<div class="confetti-wrap" id="confettiWrap"></div>
+<div class="app">
+  <div id="homeScreen">
+    <div class="header">
+      <span class="moon">🌙</span>
+      <h1>Story Time!</h1>
+      <p class="subtitle">Build your adventure ✨</p>
+    </div>
+    <div class="steps">
+      <div class="step-pill" id="pill1">1 · Pick a hero</div>
+      <div class="step-arrow">→</div>
+      <div class="step-pill" id="pill2">2 · Pick a place</div>
+    </div>
+    <div id="step1Screen">
+      <div class="section-label">Who's the <span>hero</span>?</div>
+      <div class="grid" id="charGrid"></div>
+    </div>
+    <div id="step2Screen" class="hidden">
+      <div class="section-label">Where do they <span>go</span>?</div>
+      <div class="grid" id="settingGrid"></div>
+    </div>
+    <button class="go-btn" id="goBtn" disabled onclick="showStory()">✨ Tell My Story! ✨</button>
+  </div>
+  <div id="storyScreen" class="hidden">
+    <div class="story-panel">
+      <div class="story-header">
+        <div class="story-emojis"><span id="storyCharEmoji"></span><span id="storySettingEmoji"></span></div>
+        <div>
+          <div class="story-title" id="storyTitle"></div>
+          <div class="story-sub">A magical adventure ✨</div>
+        </div>
+      </div>
+      <div class="story-body">
+        <div class="story-text" id="storyText"></div>
+        <div class="error-msg" id="errorMsg" style="display:none"></div>
+        <div class="story-controls" id="storyControls">
+          <button class="ctrl-btn primary" id="readBtn" onclick="toggleRead()">🔊 Read to Me</button>
+          <button class="ctrl-btn" onclick="showStory()">🔄 New Story</button>
+        </div>
+      </div>
+    </div>
+    <button class="back-btn" onclick="goHome()">← Choose again</button>
+  </div>
+</div>
+
+<script>
+// ── CHARACTER & SETTING DATA ─────────────────────────────────────────────────
+const ALL_CHARS = [
+  {id:"leo",      emoji:"🦁", name:"Leo the Lion",      tag:"Roar!"},
+  {id:"dino",     emoji:"🦕", name:"Dino",              tag:"Rawr!"},
+  {id:"ember",    emoji:"🐉", name:"Ember the Dragon",  tag:"Fire & magic"},
+  {id:"rocket",   emoji:"🚀", name:"Rocket Kid",        tag:"Blast off!"},
+  {id:"blossom",  emoji:"🐰", name:"Blossom the Bunny", tag:"Hoppity hop"},
+  {id:"robo",     emoji:"🤖", name:"Robo",              tag:"Beep boop"},
+  {id:"finn",     emoji:"🦊", name:"Finn the Fox",      tag:"So clever!"},
+  {id:"pao",      emoji:"🐼", name:"Panda Pao",         tag:"Bamboo time"},
+  {id:"sparkle",  emoji:"🦄", name:"Sparkle",           tag:"Pure magic"},
+  {id:"hopscotch",emoji:"🐸", name:"Hopscotch",         tag:"Ribbit!"},
+  {id:"pete",     emoji:"🐧", name:"Pete the Penguin",  tag:"Waddle waddle"},
+  {id:"flutter",  emoji:"🦋", name:"Flutter",           tag:"So pretty!"},
+  {id:"inky",     emoji:"🐙", name:"Inky",              tag:"8 arms!"},
+  {id:"superkid", emoji:"🦸", name:"Super Kid",         tag:"To the rescue!"},
+  {id:"merlin",   emoji:"🧙", name:"Merlin",            tag:"Hocus pocus"},
+  {id:"rex",      emoji:"🦖", name:"Rex",               tag:"Stomp stomp!"},
+];
+
+const ALL_SETTINGS = [
+  {id:"beach",    emoji:"🏖️", name:"Sunny Beach",       tag:"Waves & sand"},
+  {id:"nightsky", emoji:"🌙", name:"Magic Night Sky",   tag:"Stars & moonlight"},
+  {id:"mountains",emoji:"🏔️", name:"Snowy Mountains",  tag:"Brrr!"},
+  {id:"japan",    emoji:"🗾", name:"Japan",             tag:"Cherry blossoms"},
+  {id:"volcano",  emoji:"🌋", name:"Volcano Island",    tag:"Hot stuff!"},
+  {id:"forest",   emoji:"🌲", name:"Enchanted Forest",  tag:"Fireflies!"},
+  {id:"city",     emoji:"🏙️", name:"Glowing City",      tag:"So many lights"},
+  {id:"space",    emoji:"🪐", name:"Outer Space",       tag:"Zoom!"},
+  {id:"castle",   emoji:"🏰", name:"Magic Castle",      tag:"Dragons & knights"},
+  {id:"undersea", emoji:"🌊", name:"Under the Sea",     tag:"Bubbles!"},
+  {id:"mushroom", emoji:"🍄", name:"Mushroom Kingdom",  tag:"Tiny & magical"},
+  {id:"circus",   emoji:"🎪", name:"Circus Town",       tag:"Wow!"},
+  {id:"desert",   emoji:"🏜️", name:"Desert Oasis",      tag:"Sand & treasure"},
+  {id:"ice",      emoji:"❄️",  name:"Ice Kingdom",       tag:"Frozen!"},
+  {id:"rainbow",  emoji:"🌈", name:"Rainbow Cloud",     tag:"Way up high"},
+  {id:"egypt",    emoji:"🕌", name:"Ancient Egypt",     tag:"Pyramids!"},
+];
+
+// ── STATE ────────────────────────────────────────────────────────────────────
+let STORIES = {};           // loaded from stories.json
+let usedCharIdx = [], usedSettingIdx = [];
+let shownChars = [], shownSettings = [];
+let selectedChar = null, selectedSetting = null;
+let isSpeaking = false, sentences = [];
+
+// ── LOAD STORIES ─────────────────────────────────────────────────────────────
+async function loadStories() {
+  try {
+    const r = await fetch('stories.json');
+    STORIES = await r.json();
+    console.log(`Loaded ${Object.keys(STORIES).length} stories.`);
+  } catch(e) {
+    console.warn('stories.json not found — run generate_stories.py first.');
+    STORIES = {};
+  }
+}
+
+// ── POOL PICKER ───────────────────────────────────────────────────────────────
+function pickN(pool, used, n) {
+  if (used.length + n > pool.length) used.length = 0;
+  const avail = pool.map((_,i)=>i).filter(i=>!used.includes(i));
+  const picks = [];
+  while (picks.length < n) {
+    const r = Math.floor(Math.random() * avail.length);
+    picks.push(avail.splice(r,1)[0]);
+  }
+  picks.forEach(i=>used.push(i));
+  return picks.map(i=>pool[i]);
+}
+
+// ── RENDER GRIDS ──────────────────────────────────────────────────────────────
+function renderChars() {
+  shownChars = pickN(ALL_CHARS, usedCharIdx, 4);
+  document.getElementById('charGrid').innerHTML = shownChars.map((c,i)=>`
+    <button class="card" onclick="selectChar(${i})" id="cc${i}">
+      <span class="emoji">${c.emoji}</span>
+      <span class="name">${c.name}</span>
+      <span class="tag">${c.tag}</span>
+    </button>`).join('');
+}
+
+function renderSettings() {
+  shownSettings = pickN(ALL_SETTINGS, usedSettingIdx, 4);
+  document.getElementById('settingGrid').innerHTML = shownSettings.map((s,i)=>`
+    <button class="card" onclick="selectSetting(${i})" id="cs${i}">
+      <span class="emoji">${s.emoji}</span>
+      <span class="name">${s.name}</span>
+      <span class="tag">${s.tag}</span>
+    </button>`).join('');
+}
+
+// ── SELECTION ─────────────────────────────────────────────────────────────────
+function selectChar(i) {
+  selectedChar = shownChars[i];
+  document.querySelectorAll('#charGrid .card').forEach(c=>c.classList.remove('selected'));
+  document.getElementById(`cc${i}`).classList.add('selected');
+  setTimeout(() => {
+    document.getElementById('step1Screen').classList.add('hidden');
+    document.getElementById('step2Screen').classList.remove('hidden');
+    selectedSetting = null;
+    document.getElementById('goBtn').disabled = true;
+    updatePills();
+  }, 240);
+}
+
+function selectSetting(i) {
+  selectedSetting = shownSettings[i];
+  document.querySelectorAll('#settingGrid .card').forEach(c=>c.classList.remove('selected'));
+  document.getElementById(`cs${i}`).classList.add('selected');
+  document.getElementById('goBtn').disabled = false;
+  updatePills();
+}
+
+function updatePills() {
+  const p1 = document.getElementById('pill1');
+  const p2 = document.getElementById('pill2');
+  if (selectedChar && selectedSetting) {
+    p1.className='step-pill done'; p1.textContent='✓ '+selectedChar.emoji+' '+selectedChar.name;
+    p2.className='step-pill done'; p2.textContent='✓ '+selectedSetting.emoji+' '+selectedSetting.name;
+  } else if (selectedChar) {
+    p1.className='step-pill done'; p1.textContent='✓ '+selectedChar.emoji+' '+selectedChar.name;
+    p2.className='step-pill active'; p2.textContent='2 · Pick a place';
+  } else {
+    p1.className='step-pill active'; p1.textContent='1 · Pick a hero';
+    p2.className='step-pill';        p2.textContent='2 · Pick a place';
+  }
+}
+
+// ── SHOW STORY ────────────────────────────────────────────────────────────────
+function showStory() {
+  if (!selectedChar || !selectedSetting) return;
+  stopReading();
+
+  const key = `${selectedChar.id}_${selectedSetting.id}`;
+  const text = STORIES[key];
+
+  document.getElementById('homeScreen').classList.add('hidden');
+  document.getElementById('storyScreen').classList.remove('hidden');
+  document.getElementById('storyCharEmoji').textContent    = selectedChar.emoji;
+  document.getElementById('storySettingEmoji').textContent = selectedSetting.emoji;
+  document.getElementById('storyTitle').textContent = `${selectedChar.name} in ${selectedSetting.name}`;
+  document.getElementById('errorMsg').style.display = 'none';
+
+  if (!text) {
+    document.getElementById('storyText').textContent = '';
+    document.getElementById('errorMsg').style.display = '';
+    document.getElementById('errorMsg').textContent = "Story not found! Run generate_stories.py to create stories.json first. 🧚";
+    return;
+  }
+
+  sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
+  document.getElementById('storyText').innerHTML = sentences.map((s,i)=>
+    `<span class="sentence" id="sent${i}">${s.trim()} </span>`
+  ).join('');
+
+  launchConfetti();
+  setTimeout(startReading, 700);
+}
+
+// ── NAVIGATION ────────────────────────────────────────────────────────────────
+function goHome() {
+  stopReading();
+  document.getElementById('storyScreen').classList.add('hidden');
+  document.getElementById('homeScreen').classList.remove('hidden');
+  document.getElementById('step2Screen').classList.add('hidden');
+  document.getElementById('step1Screen').classList.remove('hidden');
+  selectedChar = selectedSetting = null;
+  document.getElementById('goBtn').disabled = true;
+  updatePills();
+  renderChars();
+  renderSettings();
+}
+
+// ── SPEECH ────────────────────────────────────────────────────────────────────
+function startReading() {
+  if (!sentences.length || !window.speechSynthesis) return;
+  stopReading();
+  const voices = window.speechSynthesis.getVoices();
+  const preferred = voices.find(v=>v.name.includes('Samantha')||v.name.includes('Karen')||v.lang==='en-US'||v.lang==='en-GB');
+  isSpeaking = true; updateReadBtn();
+
+  function speakAt(i) {
+    if (i >= sentences.length || !isSpeaking) { isSpeaking=false; clearHL(); updateReadBtn(); return; }
+    hlSent(i);
+    const u = new SpeechSynthesisUtterance(sentences[i]);
+    u.rate=0.88; u.pitch=1.1; u.volume=1;
+    if (preferred) u.voice = preferred;
+    u.onend  = () => { if (isSpeaking) speakAt(i+1); };
+    u.onerror= () => { isSpeaking=false; clearHL(); updateReadBtn(); };
+    window.speechSynthesis.speak(u);
+  }
+  speakAt(0);
+}
+
+function stopReading() {
+  isSpeaking = false;
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  clearHL(); updateReadBtn();
+}
+
+function toggleRead() { isSpeaking ? stopReading() : startReading(); }
+function hlSent(i) { clearHL(); const el=document.getElementById(`sent${i}`); if(el){el.classList.add('active');el.scrollIntoView({behavior:'smooth',block:'nearest'});} }
+function clearHL() { document.querySelectorAll('.sentence').forEach(s=>s.classList.remove('active')); }
+function updateReadBtn() {
+  const b=document.getElementById('readBtn'); if(!b)return;
+  b.innerHTML=isSpeaking?'⏹ Stop Reading':'🔊 Read to Me';
+  b.className=isSpeaking?'ctrl-btn speaking':'ctrl-btn primary';
+}
+
+// ── CONFETTI ──────────────────────────────────────────────────────────────────
+function launchConfetti() {
+  const wrap=document.getElementById('confettiWrap'); wrap.innerHTML='';
+  const colors=['#f9c74f','#f8961e','#ff70a6','#48c78e','#64a0ff','#c77dff'];
+  for(let i=0;i<45;i++){
+    const p=document.createElement('div'); p.className='confetti-piece';
+    p.style.cssText=`left:${Math.random()*100}vw;top:-20px;background:${colors[Math.floor(Math.random()*colors.length)]};animation-delay:${Math.random()*0.9}s;animation-duration:${1.2+Math.random()*0.9}s`;
+    wrap.appendChild(p);
+  }
+  setTimeout(()=>{wrap.innerHTML='';},2800);
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', async () => {
+  await loadStories();
+  renderChars();
+  renderSettings();
+  updatePills();
+  if (window.speechSynthesis) { window.speechSynthesis.onvoiceschanged=()=>{}; window.speechSynthesis.getVoices(); }
+});
+</script>
+</body>
+</html>
