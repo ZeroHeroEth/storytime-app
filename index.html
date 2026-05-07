@@ -325,6 +325,51 @@ function goHome() {
   renderSettings();
 }
 
+// ── SOUND EFFECTS ─────────────────────────────────────────────────────────────
+const SOUND_TRIGGERS = {
+  'splash': 'water_splash', 'kersplash': 'water_splash', 'kerplosh': 'water_splash',
+  'whoosh': 'whoosh', 'whoooosh': 'whoosh', 'whooooosh': 'whoosh', 'swoosh': 'whoosh',
+  'wheee': 'whoosh', 'wheeee': 'whoosh', 'wheeeee': 'whoosh',
+  'zoom': 'zoom', 'zoooom': 'zoom', 'zooooom': 'zoom', 'zoooooom': 'zoom',
+  'boom': 'boom', 'bang': 'boom',
+  'crash': 'crash',
+  'boing': 'boing',
+  'ding': 'bell', 'dong': 'bell', 'ting': 'bell', 'tong': 'bell', 'tang': 'bell', 'ring': 'bell',
+  'pop': 'pop',
+  'roar': 'roar',
+  'rumble': 'rumble',
+  'sniff': 'sniff',
+  'crunch': 'crunch',
+  'honk': 'honk',
+  'click': 'click',
+  'creak': 'creak',
+  'thump': 'thud', 'fwump': 'thud', 'whomp': 'thud', 'bonk': 'thud',
+};
+
+// Preload all audio files
+const audioCache = {};
+function preloadSounds() {
+  const names = [...new Set(Object.values(SOUND_TRIGGERS))];
+  names.forEach(name => {
+    const a = new Audio(`sounds/${name}.mp3`);
+    a.preload = 'auto';
+    audioCache[name] = a;
+  });
+}
+
+function playSoundForSentence(text) {
+  const words = text.toLowerCase().match(/[a-z]+/g) || [];
+  for (const word of words) {
+    if (SOUND_TRIGGERS[word] && audioCache[SOUND_TRIGGERS[word]]) {
+      const snd = audioCache[SOUND_TRIGGERS[word]];
+      snd.currentTime = 0;
+      snd.volume = 0.55;
+      snd.play().catch(() => {}); // ignore autoplay errors
+      return; // one sound per sentence max
+    }
+  }
+}
+
 // ── SPEECH ────────────────────────────────────────────────────────────────────
 let currentSentence = 0;
 
@@ -339,6 +384,7 @@ function startReading() {
     if (i >= sentences.length || !isSpeaking) { isSpeaking=false; currentSentence=0; clearHL(); updateReadBtn(); return; }
     currentSentence = i;
     hlSent(i);
+    playSoundForSentence(sentences[i]);
     const u = new SpeechSynthesisUtterance(sentences[i]);
     u.rate=0.88; u.pitch=1.1; u.volume=1;
     if (preferred) u.voice = preferred;
@@ -402,6 +448,7 @@ function launchConfetti() {
 // ── INIT ──────────────────────────────────────────────────────────────────────
 window.addEventListener('DOMContentLoaded', async () => {
   await loadStories();
+  preloadSounds();
   renderChars();
   renderSettings();
   updatePills();
