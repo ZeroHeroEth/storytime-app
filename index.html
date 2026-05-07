@@ -86,6 +86,8 @@
   .story-text { font-size:1rem;line-height:1.8;color:rgba(255,255,255,0.9);font-weight:700;min-height:80px; }
   .sentence { transition:color 0.25s; }
   .sentence.active { color:var(--accent); }
+  .word { transition:color 0.15s, background 0.15s; border-radius: 4px; padding: 0 1px; display: inline; }
+  .word.active { color: #1a1a2e; background: var(--accent); }
   .story-controls { display:flex;gap:10px;margin-top:16px;flex-wrap:wrap; }
   .ctrl-btn { flex:1;min-width:90px;background:rgba(255,255,255,0.07);border:1.5px solid rgba(255,255,255,0.14);border-radius:999px;padding:11px 10px;font-family:'Fredoka One',cursive;font-size:0.88rem;color:#fff;cursor:pointer;transition:background 0.14s,transform 0.1s;display:flex;align-items:center;justify-content:center;gap:5px; }
   .ctrl-btn:active{transform:scale(0.95);background:rgba(255,255,255,0.13)}
@@ -303,9 +305,24 @@ function showStory() {
 
   sentences = text.match(/[^.!?]+[.!?]+/g) || [text];
   currentSentence = 0;
-  document.getElementById('storyText').innerHTML = sentences.map((s,i)=>
-    `<span class="sentence" id="sent${i}">${s.trim()} </span>`
-  ).join('');
+  currentWord = 0;
+
+  // Build word index
+  wordList = buildWordList(sentences);
+
+  // Render word-level spans grouped into sentence blocks
+  let html = '';
+  let sentIdx = -1;
+  wordList.forEach((w, i) => {
+    if (w.sentenceIdx !== sentIdx) {
+      if (sentIdx !== -1) html += '</span> ';
+      html += `<span class="sentence" id="sent${w.sentenceIdx}">`;
+      sentIdx = w.sentenceIdx;
+    }
+    html += `<span class="word" id="word${i}">${w.word}</span> `;
+  });
+  if (sentIdx !== -1) html += '</span>';
+  document.getElementById('storyText').innerHTML = html;
 
   launchConfetti();
   setTimeout(startReading, 700);
@@ -346,7 +363,6 @@ const SOUND_TRIGGERS = {
   'thump': 'thud', 'fwump': 'thud', 'whomp': 'thud', 'bonk': 'thud',
 };
 
-// Preload all audio files
 const audioCache = {};
 function preloadSounds() {
   const names = [...new Set(Object.values(SOUND_TRIGGERS))];
@@ -357,42 +373,124 @@ function preloadSounds() {
   });
 }
 
-function playSoundForSentence(text) {
-  const words = text.toLowerCase().match(/[a-z]+/g) || [];
-  for (const word of words) {
-    if (SOUND_TRIGGERS[word] && audioCache[SOUND_TRIGGERS[word]]) {
-      const snd = audioCache[SOUND_TRIGGERS[word]];
-      snd.currentTime = 0;
-      snd.volume = 0.55;
-      snd.play().catch(() => {}); // ignore autoplay errors
-      return; // one sound per sentence max
+function playSound(name) {
+  const snd = audioCache[name];
+  if (!snd) return;
+  snd.currentTime = 0;
+  snd.volume = 0.55;
+  snd.play().catch(() => {});
+}
+
+// ── WORD INDEX ────────────────────────────────────────────────────────────────
+// Flatten the full story into a word list with metadata so we can
+// seek to any word and highlight it precisely.
+// Each entry: { word, clean, sentenceIdx, charStart, charEnd }
+let wordList = [];       // full word-level index
+let currentWord = 0;     // which word we're currently at (pause point)
+
+function buildWordList(sentenceArray) {
+  const list = [];
+  sentenceArray.forEach((sent, si) => {
+    // find every word token and its character offset within the sentence
+    const re = /\S+/g;
+    let m;
+    while ((m = re.exec(sent)) !== null) {
+      const raw = m[0];
+      const clean = raw.toLowerCase().replace(/[^a-z]/g, '');
+      list.push({ word: raw, clean, sentenceIdx: si, charStart: m.index, charEnd: m.index + raw.length });
     }
-  }
+  });
+  return list;
 }
 
 // ── SPEECH ────────────────────────────────────────────────────────────────────
 let currentSentence = 0;
+// Track which sentence utterance is active so boundary events map correctly
+let activeSentenceIdx = -1;
+
+function getPreferredVoice() {
+  const voices = window.speechSynthesis.getVoices();
+  return voices.find(v =>
+    v.name.includes('Samantha') || v.name.includes('Siri') ||
+    v.name.includes('Karen')    || v.lang === 'en-US' || v.lang === 'en-GB'
+  );
+}
 
 function startReading() {
   if (!sentences.length || !window.speechSynthesis) return;
   window.speechSynthesis.cancel();
-  const voices = window.speechSynthesis.getVoices();
-  const preferred = voices.find(v=>v.name.includes('Samantha')||v.name.includes('Siri')||v.name.includes('Karen')||v.lang==='en-US'||v.lang==='en-GB');
-  isSpeaking = true; updateReadBtn();
+  isSpeaking = true;
+  updateReadBtn();
+  speakFromWord(currentWord);
+}
 
-  function speakAt(i) {
-    if (i >= sentences.length || !isSpeaking) { isSpeaking=false; currentSentence=0; clearHL(); updateReadBtn(); return; }
-    currentSentence = i;
-    hlSent(i);
-    playSoundForSentence(sentences[i]);
-    const u = new SpeechSynthesisUtterance(sentences[i]);
-    u.rate=0.88; u.pitch=1.1; u.volume=1;
-    if (preferred) u.voice = preferred;
-    u.onend  = () => { if (isSpeaking) speakAt(i+1); };
-    u.onerror= () => { isSpeaking=false; clearHL(); updateReadBtn(); };
-    window.speechSynthesis.speak(u);
+function speakFromWord(wordIdx) {
+  if (wordIdx >= wordList.length || !isSpeaking) {
+    isSpeaking = false; currentWord = 0; currentSentence = 0;
+    clearHL(); updateReadBtn(); return;
   }
-  speakAt(currentSentence);
+
+  // Find which sentence this word belongs to and speak from there
+  const targetSentence = wordList[wordIdx].sentenceIdx;
+  currentSentence = targetSentence;
+  activeSentenceIdx = targetSentence;
+
+  // Figure out the char offset within the sentence where we resume
+  // (only matters if we're mid-sentence after a pause)
+  const resumeCharOffset = wordList[wordIdx].charStart;
+  const sentenceText = sentences[targetSentence];
+
+  // Build the text to speak: from resume point to end of sentence
+  const textToSpeak = sentenceText.slice(resumeCharOffset);
+
+  hlWord(wordIdx);
+
+  const u = new SpeechSynthesisUtterance(textToSpeak);
+  u.rate = 0.88; u.pitch = 1.1; u.volume = 1;
+  const voice = getPreferredVoice();
+  if (voice) u.voice = voice;
+
+  // boundary fires on each word as it's spoken
+  u.addEventListener('boundary', (e) => {
+    if (e.name !== 'word') return;
+
+    // Map the boundary char offset back to a word in our wordList
+    // The offset is relative to textToSpeak, so add resumeCharOffset
+    const absoluteChar = resumeCharOffset + e.charIndex;
+
+    // Find the matching word in this sentence
+    const match = wordList.findIndex((w, i) =>
+      i >= wordIdx &&
+      w.sentenceIdx === targetSentence &&
+      w.charStart === absoluteChar
+    );
+
+    if (match !== -1) {
+      currentWord = match;
+      hlWord(match);
+      // Fire sound if this word is a trigger
+      const snd = SOUND_TRIGGERS[wordList[match].clean];
+      if (snd) playSound(snd);
+    }
+  });
+
+  u.onend = () => {
+    if (!isSpeaking) return;
+    // Move to first word of next sentence
+    const nextSentenceIdx = targetSentence + 1;
+    const nextWordIdx = wordList.findIndex(w => w.sentenceIdx === nextSentenceIdx);
+    if (nextWordIdx !== -1) {
+      currentWord = nextWordIdx;
+      speakFromWord(nextWordIdx);
+    } else {
+      // Story finished
+      isSpeaking = false; currentWord = 0; currentSentence = 0;
+      clearHL(); updateReadBtn();
+    }
+  };
+
+  u.onerror = () => { isSpeaking = false; clearHL(); updateReadBtn(); };
+  window.speechSynthesis.speak(u);
 }
 
 function pauseReading() {
@@ -402,8 +500,8 @@ function pauseReading() {
 }
 
 function restartStory() {
-  currentSentence = 0;
   isSpeaking = false;
+  currentWord = 0; currentSentence = 0;
   if (window.speechSynthesis) window.speechSynthesis.cancel();
   clearHL(); updateReadBtn();
   setTimeout(startReading, 200);
@@ -411,25 +509,37 @@ function restartStory() {
 
 function stopReading() {
   isSpeaking = false;
-  currentSentence = 0;
+  currentWord = 0; currentSentence = 0;
   if (window.speechSynthesis) window.speechSynthesis.cancel();
   clearHL(); updateReadBtn();
 }
 
 function toggleRead() { isSpeaking ? pauseReading() : startReading(); }
-function hlSent(i) { clearHL(); const el=document.getElementById(`sent${i}`); if(el){el.classList.add('active');el.scrollIntoView({behavior:'smooth',block:'nearest'});} }
-function clearHL() { document.querySelectorAll('.sentence').forEach(s=>s.classList.remove('active')); }
+
+function hlWord(idx) {
+  clearHL();
+  const el = document.getElementById(`word${idx}`);
+  if (el) { el.classList.add('active'); el.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+}
+
+function hlSent(i) {
+  // kept for compatibility but word-level highlighting is used instead
+  clearHL();
+}
+
+function clearHL() { document.querySelectorAll('.word, .sentence').forEach(el => el.classList.remove('active')); }
+
 function updateReadBtn() {
-  const b=document.getElementById('readBtn'); if(!b)return;
+  const b = document.getElementById('readBtn'); if (!b) return;
   if (isSpeaking) {
-    b.innerHTML='⏸ Pause';
-    b.className='ctrl-btn speaking';
-  } else if (currentSentence > 0) {
-    b.innerHTML='▶️ Resume';
-    b.className='ctrl-btn primary';
+    b.innerHTML = '⏸ Pause';
+    b.className = 'ctrl-btn speaking';
+  } else if (currentWord > 0) {
+    b.innerHTML = '▶️ Resume';
+    b.className = 'ctrl-btn primary';
   } else {
-    b.innerHTML='▶️ Play';
-    b.className='ctrl-btn primary';
+    b.innerHTML = '▶️ Play';
+    b.className = 'ctrl-btn primary';
   }
 }
 
