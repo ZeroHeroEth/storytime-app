@@ -1,0 +1,1076 @@
+[
+  {
+    "word": "Little",
+    "clean": "little",
+    "start": 0.0,
+    "end": 0.372
+  },
+  {
+    "word": "Merlin",
+    "clean": "merlin",
+    "start": 0.418,
+    "end": 0.882
+  },
+  {
+    "word": "the",
+    "clean": "the",
+    "start": 1.324,
+    "end": 1.451
+  },
+  {
+    "word": "tiny",
+    "clean": "tiny",
+    "start": 1.521,
+    "end": 1.927
+  },
+  {
+    "word": "wizard",
+    "clean": "wizard",
+    "start": 1.985,
+    "end": 2.299
+  },
+  {
+    "word": "grabbed",
+    "clean": "grabbed",
+    "start": 2.357,
+    "end": 2.74
+  },
+  {
+    "word": "his",
+    "clean": "his",
+    "start": 2.775,
+    "end": 2.856
+  },
+  {
+    "word": "sparkly",
+    "clean": "sparkly",
+    "start": 2.902,
+    "end": 3.355
+  },
+  {
+    "word": "wand",
+    "clean": "wand",
+    "start": 3.425,
+    "end": 3.738
+  },
+  {
+    "word": "and",
+    "clean": "and",
+    "start": 3.982,
+    "end": 4.18
+  },
+  {
+    "word": "went",
+    "clean": "went",
+    "start": 4.272,
+    "end": 4.574
+  },
+  {
+    "word": "Whoooosh!",
+    "clean": "whoooosh",
+    "start": 4.853,
+    "end": 5.921
+  },
+  {
+    "word": "right",
+    "clean": "right",
+    "start": 6.165,
+    "end": 6.42
+  },
+  {
+    "word": "into",
+    "clean": "into",
+    "start": 6.467,
+    "end": 6.606
+  },
+  {
+    "word": "the",
+    "clean": "the",
+    "start": 6.664,
+    "end": 6.734
+  },
+  {
+    "word": "big",
+    "clean": "big",
+    "start": 6.815,
+    "end": 7.059
+  },
+  {
+    "word": "blue",
+    "clean": "blue",
+    "start": 7.14,
+    "end": 7.419
+  },
+  {
+    "word": "ocean.",
+    "clean": "ocean",
+    "start": 7.477,
+    "end": 8.104
+  },
+  {
+    "word": "Down,",
+    "clean": "down",
+    "start": 8.8,
+    "end": 9.276
+  },
+  {
+    "word": "down,",
+    "clean": "down",
+    "start": 9.323,
+    "end": 9.822
+  },
+  {
+    "word": "down",
+    "clean": "down",
+    "start": 9.903,
+    "end": 10.286
+  },
+  {
+    "word": "he",
+    "clean": "he",
+    "start": 10.333,
+    "end": 10.403
+  },
+  {
+    "word": "swam",
+    "clean": "swam",
+    "start": 10.461,
+    "end": 10.786
+  },
+  {
+    "word": "past",
+    "clean": "past",
+    "start": 10.855,
+    "end": 11.099
+  },
+  {
+    "word": "the",
+    "clean": "the",
+    "start": 11.134,
+    "end": 11.203
+  },
+  {
+    "word": "bubbles\u2014Pop!",
+    "clean": "bubbles\u2014pop",
+    "start": 11.261,
+    "end": 12.492
+  },
+  {
+    "word": "Pop!",
+    "clean": "pop",
+    "start": 12.643,
+    "end": 12.945
+  },
+  {
+    "word": "Pop!\u2014until",
+    "clean": "pop!\u2014until",
+    "start": 12.991,
+    "end": 14.164
+  },
+  {
+    "word": "he",
+    "clean": "he",
+    "start": 14.21,
+    "end": 14.268
+  },
+  {
+    "word": "reached",
+    "clean": "reached",
+    "start": 14.35,
+    "end": 14.64
+  },
+  {
+    "word": "a",
+    "clean": "a",
+    "start": 14.698,
+    "end": 14.721
+  },
+  {
+    "word": "magical",
+    "clean": "magical",
+    "start": 14.791,
+    "end": 15.243
+  },
+  {
+    "word": "underwater",
+    "clean": "underwater",
+    "start": 15.36,
+    "end": 15.87
+  },
+  {
+    "word": "castle",
+    "clean": "castle",
+    "start": 15.928,
+    "end": 16.358
+  },
+  {
+    "word": "made",
+    "clean": "made",
+    "start": 16.404,
+    "end": 16.59
+  },
+  {
+    "word": "of",
+    "clean": "of",
+    "start": 16.613,
+    "end": 16.672
+  },
+  {
+    "word": "coral.",
+    "clean": "coral",
+    "start": 16.741,
+    "end": 17.38
+  },
+  {
+    "word": "A",
+    "clean": "a",
+    "start": 17.821,
+    "end": 17.902
+  },
+  {
+    "word": "friendly",
+    "clean": "friendly",
+    "start": 18.018,
+    "end": 18.425
+  },
+  {
+    "word": "purple",
+    "clean": "purple",
+    "start": 18.518,
+    "end": 18.843
+  },
+  {
+    "word": "fish",
+    "clean": "fish",
+    "start": 18.889,
+    "end": 19.133
+  },
+  {
+    "word": "named",
+    "clean": "named",
+    "start": 19.191,
+    "end": 19.423
+  },
+  {
+    "word": "Bubbles",
+    "clean": "bubbles",
+    "start": 19.516,
+    "end": 19.98
+  },
+  {
+    "word": "said",
+    "clean": "said",
+    "start": 20.224,
+    "end": 20.456
+  },
+  {
+    "word": "hello",
+    "clean": "hello",
+    "start": 20.538,
+    "end": 20.967
+  },
+  {
+    "word": "and",
+    "clean": "and",
+    "start": 21.246,
+    "end": 21.466
+  },
+  {
+    "word": "did",
+    "clean": "did",
+    "start": 21.559,
+    "end": 21.71
+  },
+  {
+    "word": "a",
+    "clean": "a",
+    "start": 21.745,
+    "end": 21.768
+  },
+  {
+    "word": "loop-de-loop\u2014Zoom!\u2014around",
+    "clean": "loop-de-loop\u2014zoom!\u2014around",
+    "start": 21.85,
+    "end": 23.974
+  },
+  {
+    "word": "Merlin's",
+    "clean": "merlin's",
+    "start": 24.032,
+    "end": 24.45
+  },
+  {
+    "word": "hat.",
+    "clean": "hat",
+    "start": 24.497,
+    "end": 24.961
+  },
+  {
+    "word": "Merlin",
+    "clean": "merlin",
+    "start": 25.774,
+    "end": 26.168
+  },
+  {
+    "word": "waved",
+    "clean": "waved",
+    "start": 26.238,
+    "end": 26.528
+  },
+  {
+    "word": "his",
+    "clean": "his",
+    "start": 26.552,
+    "end": 26.656
+  },
+  {
+    "word": "wand",
+    "clean": "wand",
+    "start": 26.737,
+    "end": 27.086
+  },
+  {
+    "word": "and",
+    "clean": "and",
+    "start": 27.295,
+    "end": 27.469
+  },
+  {
+    "word": "made",
+    "clean": "made",
+    "start": 27.562,
+    "end": 27.84
+  },
+  {
+    "word": "rainbow",
+    "clean": "rainbow",
+    "start": 27.898,
+    "end": 28.223
+  },
+  {
+    "word": "lights",
+    "clean": "lights",
+    "start": 28.281,
+    "end": 28.479
+  },
+  {
+    "word": "dance",
+    "clean": "dance",
+    "start": 28.525,
+    "end": 28.932
+  },
+  {
+    "word": "everywhere,",
+    "clean": "everywhere",
+    "start": 28.966,
+    "end": 29.593
+  },
+  {
+    "word": "and",
+    "clean": "and",
+    "start": 29.721,
+    "end": 29.907
+  },
+  {
+    "word": "all",
+    "clean": "all",
+    "start": 30.023,
+    "end": 30.301
+  },
+  {
+    "word": "the",
+    "clean": "the",
+    "start": 30.371,
+    "end": 30.441
+  },
+  {
+    "word": "colorful",
+    "clean": "colorful",
+    "start": 30.475,
+    "end": 30.859
+  },
+  {
+    "word": "fish",
+    "clean": "fish",
+    "start": 30.928,
+    "end": 31.149
+  },
+  {
+    "word": "came",
+    "clean": "came",
+    "start": 31.195,
+    "end": 31.393
+  },
+  {
+    "word": "to",
+    "clean": "to",
+    "start": 31.427,
+    "end": 31.485
+  },
+  {
+    "word": "play.",
+    "clean": "play",
+    "start": 31.544,
+    "end": 32.124
+  },
+  {
+    "word": "They",
+    "clean": "they",
+    "start": 32.821,
+    "end": 33.111
+  },
+  {
+    "word": "swam",
+    "clean": "swam",
+    "start": 33.192,
+    "end": 33.471
+  },
+  {
+    "word": "through",
+    "clean": "through",
+    "start": 33.529,
+    "end": 33.726
+  },
+  {
+    "word": "the",
+    "clean": "the",
+    "start": 33.749,
+    "end": 33.819
+  },
+  {
+    "word": "tall",
+    "clean": "tall",
+    "start": 33.866,
+    "end": 34.167
+  },
+  {
+    "word": "purple",
+    "clean": "purple",
+    "start": 34.283,
+    "end": 34.597
+  },
+  {
+    "word": "coral",
+    "clean": "coral",
+    "start": 34.643,
+    "end": 34.934
+  },
+  {
+    "word": "forests",
+    "clean": "forests",
+    "start": 35.015,
+    "end": 35.433
+  },
+  {
+    "word": "and",
+    "clean": "and",
+    "start": 35.468,
+    "end": 35.549
+  },
+  {
+    "word": "found",
+    "clean": "found",
+    "start": 35.607,
+    "end": 35.793
+  },
+  {
+    "word": "a",
+    "clean": "a",
+    "start": 35.839,
+    "end": 35.862
+  },
+  {
+    "word": "treasure",
+    "clean": "treasure",
+    "start": 35.932,
+    "end": 36.269
+  },
+  {
+    "word": "chest",
+    "clean": "chest",
+    "start": 36.304,
+    "end": 36.64
+  },
+  {
+    "word": "filled",
+    "clean": "filled",
+    "start": 37.023,
+    "end": 37.279
+  },
+  {
+    "word": "with",
+    "clean": "with",
+    "start": 37.314,
+    "end": 37.43
+  },
+  {
+    "word": "shiny",
+    "clean": "shiny",
+    "start": 37.499,
+    "end": 37.906
+  },
+  {
+    "word": "shells",
+    "clean": "shells",
+    "start": 37.975,
+    "end": 38.335
+  },
+  {
+    "word": "that",
+    "clean": "that",
+    "start": 38.37,
+    "end": 38.486
+  },
+  {
+    "word": "went",
+    "clean": "went",
+    "start": 38.544,
+    "end": 38.823
+  },
+  {
+    "word": "Ding-ding-ding!",
+    "clean": "ding-ding-ding",
+    "start": 39.264,
+    "end": 40.588
+  },
+  {
+    "word": "A",
+    "clean": "a",
+    "start": 40.971,
+    "end": 41.052
+  },
+  {
+    "word": "silly",
+    "clean": "silly",
+    "start": 41.18,
+    "end": 41.482
+  },
+  {
+    "word": "octopus",
+    "clean": "octopus",
+    "start": 41.563,
+    "end": 42.004
+  },
+  {
+    "word": "tickled",
+    "clean": "tickled",
+    "start": 42.074,
+    "end": 42.387
+  },
+  {
+    "word": "Merlin",
+    "clean": "merlin",
+    "start": 42.445,
+    "end": 42.84
+  },
+  {
+    "word": "with",
+    "clean": "with",
+    "start": 42.898,
+    "end": 43.049
+  },
+  {
+    "word": "all",
+    "clean": "all",
+    "start": 43.119,
+    "end": 43.374
+  },
+  {
+    "word": "eight",
+    "clean": "eight",
+    "start": 43.467,
+    "end": 43.734
+  },
+  {
+    "word": "arms\u2014Tickle",
+    "clean": "arms\u2014tickle",
+    "start": 43.815,
+    "end": 45.081
+  },
+  {
+    "word": "tickle!\u2014and",
+    "clean": "tickle!\u2014and",
+    "start": 45.127,
+    "end": 46.3
+  },
+  {
+    "word": "made",
+    "clean": "made",
+    "start": 46.393,
+    "end": 46.625
+  },
+  {
+    "word": "him",
+    "clean": "him",
+    "start": 46.648,
+    "end": 46.764
+  },
+  {
+    "word": "giggle",
+    "clean": "giggle",
+    "start": 46.845,
+    "end": 47.217
+  },
+  {
+    "word": "so",
+    "clean": "so",
+    "start": 47.275,
+    "end": 47.612
+  },
+  {
+    "word": "hard",
+    "clean": "hard",
+    "start": 47.705,
+    "end": 48.134
+  },
+  {
+    "word": "his",
+    "clean": "his",
+    "start": 48.378,
+    "end": 48.587
+  },
+  {
+    "word": "bubble",
+    "clean": "bubble",
+    "start": 48.668,
+    "end": 48.982
+  },
+  {
+    "word": "hat",
+    "clean": "hat",
+    "start": 49.028,
+    "end": 49.179
+  },
+  {
+    "word": "jiggled.",
+    "clean": "jiggled",
+    "start": 49.26,
+    "end": 49.852
+  },
+  {
+    "word": "They",
+    "clean": "they",
+    "start": 50.363,
+    "end": 50.549
+  },
+  {
+    "word": "played",
+    "clean": "played",
+    "start": 50.607,
+    "end": 50.932
+  },
+  {
+    "word": "hide-and-seek",
+    "clean": "hide-and-seek",
+    "start": 50.99,
+    "end": 51.559
+  },
+  {
+    "word": "in",
+    "clean": "in",
+    "start": 51.606,
+    "end": 51.664
+  },
+  {
+    "word": "the",
+    "clean": "the",
+    "start": 51.698,
+    "end": 51.768
+  },
+  {
+    "word": "coral",
+    "clean": "coral",
+    "start": 51.826,
+    "end": 52.221
+  },
+  {
+    "word": "and",
+    "clean": "and",
+    "start": 52.465,
+    "end": 52.65
+  },
+  {
+    "word": "splashed",
+    "clean": "splashed",
+    "start": 52.72,
+    "end": 53.138
+  },
+  {
+    "word": "through",
+    "clean": "through",
+    "start": 53.161,
+    "end": 53.37
+  },
+  {
+    "word": "the",
+    "clean": "the",
+    "start": 53.393,
+    "end": 53.463
+  },
+  {
+    "word": "sandy",
+    "clean": "sandy",
+    "start": 53.498,
+    "end": 53.846
+  },
+  {
+    "word": "bottom\u2014Splat",
+    "clean": "bottom\u2014splat",
+    "start": 53.904,
+    "end": 55.645
+  },
+  {
+    "word": "splat!\u2014making",
+    "clean": "splat!\u2014making",
+    "start": 55.692,
+    "end": 56.888
+  },
+  {
+    "word": "happy",
+    "clean": "happy",
+    "start": 57.004,
+    "end": 57.294
+  },
+  {
+    "word": "clouds",
+    "clean": "clouds",
+    "start": 57.352,
+    "end": 57.712
+  },
+  {
+    "word": "of",
+    "clean": "of",
+    "start": 57.735,
+    "end": 57.793
+  },
+  {
+    "word": "sand",
+    "clean": "sand",
+    "start": 57.863,
+    "end": 58.142
+  },
+  {
+    "word": "fly",
+    "clean": "fly",
+    "start": 58.2,
+    "end": 58.536
+  },
+  {
+    "word": "everywhere.",
+    "clean": "everywhere",
+    "start": 58.652,
+    "end": 59.337
+  },
+  {
+    "word": "Merlin",
+    "clean": "merlin",
+    "start": 59.779,
+    "end": 60.255
+  },
+  {
+    "word": "and",
+    "clean": "and",
+    "start": 60.313,
+    "end": 60.382
+  },
+  {
+    "word": "his",
+    "clean": "his",
+    "start": 60.44,
+    "end": 60.533
+  },
+  {
+    "word": "new",
+    "clean": "new",
+    "start": 60.626,
+    "end": 60.823
+  },
+  {
+    "word": "fish",
+    "clean": "fish",
+    "start": 60.881,
+    "end": 61.079
+  },
+  {
+    "word": "friends",
+    "clean": "friends",
+    "start": 61.125,
+    "end": 61.462
+  },
+  {
+    "word": "danced",
+    "clean": "danced",
+    "start": 61.578,
+    "end": 62.031
+  },
+  {
+    "word": "and",
+    "clean": "and",
+    "start": 62.077,
+    "end": 62.17
+  },
+  {
+    "word": "spun",
+    "clean": "spun",
+    "start": 62.24,
+    "end": 62.577
+  },
+  {
+    "word": "in",
+    "clean": "in",
+    "start": 62.646,
+    "end": 62.704
+  },
+  {
+    "word": "circles",
+    "clean": "circles",
+    "start": 62.774,
+    "end": 63.296
+  },
+  {
+    "word": "until",
+    "clean": "until",
+    "start": 63.621,
+    "end": 64.016
+  },
+  {
+    "word": "the",
+    "clean": "the",
+    "start": 64.063,
+    "end": 64.132
+  },
+  {
+    "word": "sun",
+    "clean": "sun",
+    "start": 64.179,
+    "end": 64.399
+  },
+  {
+    "word": "started",
+    "clean": "started",
+    "start": 64.469,
+    "end": 64.794
+  },
+  {
+    "word": "to",
+    "clean": "to",
+    "start": 64.817,
+    "end": 64.875
+  },
+  {
+    "word": "set",
+    "clean": "set",
+    "start": 64.945,
+    "end": 65.131
+  },
+  {
+    "word": "up",
+    "clean": "up",
+    "start": 65.189,
+    "end": 65.316
+  },
+  {
+    "word": "above",
+    "clean": "above",
+    "start": 65.409,
+    "end": 65.769
+  },
+  {
+    "word": "the",
+    "clean": "the",
+    "start": 65.816,
+    "end": 65.885
+  },
+  {
+    "word": "water.",
+    "clean": "water",
+    "start": 65.943,
+    "end": 66.512
+  },
+  {
+    "word": "Merlin",
+    "clean": "merlin",
+    "start": 67.209,
+    "end": 67.65
+  },
+  {
+    "word": "gave",
+    "clean": "gave",
+    "start": 67.708,
+    "end": 67.906
+  },
+  {
+    "word": "everyone",
+    "clean": "everyone",
+    "start": 67.929,
+    "end": 68.265
+  },
+  {
+    "word": "a",
+    "clean": "a",
+    "start": 68.3,
+    "end": 68.323
+  },
+  {
+    "word": "big",
+    "clean": "big",
+    "start": 68.451,
+    "end": 68.695
+  },
+  {
+    "word": "hug",
+    "clean": "hug",
+    "start": 68.776,
+    "end": 68.939
+  },
+  {
+    "word": "goodbye,",
+    "clean": "goodbye",
+    "start": 68.962,
+    "end": 69.647
+  },
+  {
+    "word": "rode",
+    "clean": "rode",
+    "start": 69.891,
+    "end": 70.204
+  },
+  {
+    "word": "his",
+    "clean": "his",
+    "start": 70.228,
+    "end": 70.32
+  },
+  {
+    "word": "magic",
+    "clean": "magic",
+    "start": 70.367,
+    "end": 70.657
+  },
+  {
+    "word": "starfish",
+    "clean": "starfish",
+    "start": 70.704,
+    "end": 71.214
+  },
+  {
+    "word": "all",
+    "clean": "all",
+    "start": 71.331,
+    "end": 71.609
+  },
+  {
+    "word": "the",
+    "clean": "the",
+    "start": 71.667,
+    "end": 71.748
+  },
+  {
+    "word": "way",
+    "clean": "way",
+    "start": 71.795,
+    "end": 71.911
+  },
+  {
+    "word": "back",
+    "clean": "back",
+    "start": 71.969,
+    "end": 72.155
+  },
+  {
+    "word": "up,",
+    "clean": "up",
+    "start": 72.248,
+    "end": 72.584
+  },
+  {
+    "word": "and",
+    "clean": "and",
+    "start": 72.735,
+    "end": 72.909
+  },
+  {
+    "word": "fell",
+    "clean": "fell",
+    "start": 73.002,
+    "end": 73.235
+  },
+  {
+    "word": "fast",
+    "clean": "fast",
+    "start": 73.316,
+    "end": 73.653
+  },
+  {
+    "word": "asleep",
+    "clean": "asleep",
+    "start": 73.711,
+    "end": 74.117
+  },
+  {
+    "word": "dreaming",
+    "clean": "dreaming",
+    "start": 74.187,
+    "end": 74.628
+  },
+  {
+    "word": "of",
+    "clean": "of",
+    "start": 74.686,
+    "end": 74.755
+  },
+  {
+    "word": "his",
+    "clean": "his",
+    "start": 74.814,
+    "end": 74.918
+  },
+  {
+    "word": "wonderful",
+    "clean": "wonderful",
+    "start": 75.034,
+    "end": 75.557
+  },
+  {
+    "word": "underwater",
+    "clean": "underwater",
+    "start": 75.649,
+    "end": 76.195
+  },
+  {
+    "word": "adventure",
+    "clean": "adventure",
+    "start": 76.242,
+    "end": 76.752
+  },
+  {
+    "word": "with",
+    "clean": "with",
+    "start": 76.787,
+    "end": 76.903
+  },
+  {
+    "word": "his",
+    "clean": "his",
+    "start": 76.938,
+    "end": 77.043
+  },
+  {
+    "word": "new",
+    "clean": "new",
+    "start": 77.136,
+    "end": 77.356
+  },
+  {
+    "word": "best",
+    "clean": "best",
+    "start": 77.414,
+    "end": 77.646
+  },
+  {
+    "word": "friends.",
+    "clean": "friends",
+    "start": 77.704,
+    "end": 78.389
+  }
+]
